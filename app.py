@@ -90,14 +90,14 @@ with tab2:
     display_df['Country'] = display_df['Country'].replace(
         {"Taiwan, Province of China": "Taiwan", "Taiwan Province of China": "Taiwan"}
     )
-    for col in ("Combined_bn", "S_GDP"):
+    for col in ("Structures_bn", "Combined_bn", "S_GDP"):
         display_df[col] = pd.to_numeric(display_df[col], errors='coerce')
 
     if search:
         display_df = display_df[display_df['Country'].str.contains(search, case=False)]
 
     if sort_choice == "Total Value":
-        display_df = display_df.sort_values("Combined_bn", ascending=False, na_position='last')
+        display_df = display_df.sort_values("Structures_bn", ascending=False, na_position='last')
     elif sort_choice == "Structures/GDP":
         display_df = display_df.sort_values("S_GDP", ascending=False, na_position='last')
     else:
